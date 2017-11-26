@@ -1,0 +1,6 @@
+Id (database/username) : messageapp-3232b0b7;
+Password : g/AouBkXTGwK;
+Server: shareddb1e.hosting.stackcp.net;
+
+user : aldolushkja
+pass : 123456db
