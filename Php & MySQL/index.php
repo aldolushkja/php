@@ -4,8 +4,16 @@
 
 <?php
 	//SELECT QUERY
-	$query = "SELECT * FROM messages";
+	$query = "SELECT * FROM messages ORDER BY create_date DESC";
 	$messages = mysqli_query($connection, $query);
+
+	if(isset($_GET['error'])){
+		$error = $_GET['error'];
+	}
+
+	if(isset($_GET['success'])){
+		$success = $_GET['success'];
+	}
 ?>
 
 <!DOCTYPE html>
@@ -18,10 +26,16 @@
 <div class="container">
 	<header>
 		<h1>Message App</h1>
+		<?php if(isset($error)) :?>
+			<div class="alert"><?php echo $error ?></div>
+		<?php endif; ?>
+		<?php if(isset($success)) :?>
+			<div class="success"><?php echo $success ?></div>
+		<?php endif; ?>
 	</header>
 
 	<div class="main">
-		<form>
+		<form method="POST" action="process.php">
 			<input type="text" name="text" placeholder="Enter Message Text">
 			<input type="text" name="user" placeholder="Enter Username">
 			<input type="submit" value="Submit">
