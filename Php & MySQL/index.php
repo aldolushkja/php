@@ -5,7 +5,23 @@
 <?php
 	//SELECT QUERY
 	$query = "SELECT * FROM messages ORDER BY create_date DESC";
+	
 	$messages = mysqli_query($connection, $query);
+
+	if(isset($_GET['action']) && isset($_GET['id'])){
+		if($_GET['action'] == 'delete'){
+
+			$id = $_GET['id'];
+
+			$query = "DELETE FROM messages WHERE id = $id";
+
+			if(!mysqli_query($connection,$query)){
+				die(mysqli_error($connection));
+			} else {
+				header('Location: index.php?success=Message%20Removed');
+			}
+		}
+	}
 
 	if(isset($_GET['error'])){
 		$error = $_GET['error'];
@@ -43,7 +59,7 @@
 		<hr>
 		<ul class="messages">
 			<?php while($row = mysqli_fetch_assoc($messages)) :?>
-				<li><?php echo $row['text']?> | <?php echo $row['user'] ?> | <?php echo $row['create_date']?></li>
+				<li><?php echo $row['text']?> | <?php echo $row['user'] ?> | <?php echo $row['create_date']?> - <a href="index.php?action=delete&id=<?php echo $row['id'] ?>">X</a></li>
 			<?php endwhile; ?>
 		</ul>
 	</div>
