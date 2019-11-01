@@ -1,7 +1,9 @@
-#PHP 
+# PHP 
 
-A few of my php projects
+Php repository 
 
-##Latest Edit
+Collect all information about this language
+
+## Latest Edit
 
 
